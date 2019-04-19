@@ -1,14 +1,15 @@
 import bs4
 import requests
 import os
-import re
+# import re
 import w3lib.html
 
-#用户信息输入
+# 用户信息输入
 print("此程序用于下载起点中文网的小说，网站地址：https://www.qidian.com/。")
 novelname = input("请输入小说名： ")
 novelurl = input("请输入小说首页的链接： ")
-directory = input("请输入小说的保存目录： ")
+# directory = input("请输入小说的保存目录： ")
+directory = "F:\\Python_Project\\"
 
 qdurl = "https://www.qidian.com/"
 lj = directory+novelname
@@ -16,7 +17,7 @@ lj = directory+novelname
 os.mkdir(lj)
 os.chdir(lj)
 
-#获取分URL
+# 获取分URL
 chapterUrls = []
 chapterNames = []
 
@@ -37,17 +38,18 @@ print("本书一共", len(chapterNames), '章。')
 print("开始下载...")
 
 
-#进入各章节，下载内容
+# 进入各章节，下载内容
 number = 0
-for url in chapterUrls:
-    book = requests.get(url)
+for i in range(len(chapterUrls)):
+    book = requests.get(chapterUrls[i])
     book.encoding = "utf-8"
     nsoup = bs4.BeautifulSoup(book.text, "html.parser")
     content = nsoup.find_all('div', class_='read-content j_readContent')
     contents = w3lib.html.remove_tags(str(content).replace(u'<p>', u'\n'))
-    zjname = str(chapterNames[number]) + '.txt'
+#    chapterNames = nsoup.find_all('h3', class_='j_chapterName')
+    zjname = str(number + 1)+'.'+str(chapterNames[i]) + '.txt'
     number += 1
-    f = open(zjname,'w+')
+    f = open(zjname, 'w+')
     f.write(contents)
     f.close()
 
