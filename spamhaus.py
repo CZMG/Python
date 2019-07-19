@@ -21,7 +21,7 @@ content_time = []
 content_ip = []
 
 data_url = requests.get(url)
-soup = bs4.BeautifulSoup(data_url.text)
+soup = bs4.BeautifulSoup(data_url.text，"html.parser")
 content = soup.find_all('span',class_='body')
 
 for i in range(len(content)):
