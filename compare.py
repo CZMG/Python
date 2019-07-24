@@ -3,12 +3,14 @@
 Created on Tue Jul 23 21:26:46 2019
 
 @author: WYF
+
 """
 
 import openpyxl
 import os
 
 # load file
+print("此程序用于对比excel文件A和B。判断A中指定列的值是否在B中，若在，则将存在的行标红，并且在A中新建两个表格，分别为保存存在的数据和不存在的数据。")
 name_s = input("原文件：")
 col_user = input("列号：")
 name_d = input("对比文件：")
