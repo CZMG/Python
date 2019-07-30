@@ -19,27 +19,24 @@ def get_file_name(folder_name):
 
 
 # 全表复制
-def copy_all(sheet1, sheet2):
-    maxrow = sheet2.max_row
+def copy_all(sheet1, sheet2, max_row):
     for row in range(1, sheet1.max_row + 1):
         for col in range(1, sheet1.max_column + 1):
-            sheet2.cell(maxrow + row, col).value = sheet1.cell(row, col).value
+            sheet2.cell(max_row + row, col).value = sheet1.cell(row, col).value
 
 
 # 列复制
-def copy_col(sheet1, sheet2, col_number):
-    maxrow = sheet2.max_row
+def copy_col(sheet1, sheet2, col_number, max_row):
     for row in range(1, sheet1.max_row + 1):
         for col in col_number:
-            sheet2.cell(maxrow + row, col).value = sheet1.cell(row, col).value
+            sheet2.cell(max_row + row, col_number.index(col)+1).value = sheet1.cell(row, col).value
 
 
 # 行复制
-def copy_row(sheet1, sheet2, row_number):
-    maxrow = sheet2.max_row
+def copy_row(sheet1, sheet2, row_number, max_row):
     for row in row_number:
         for col in range(1, sheet1.max_column + 1):
-            sheet2.cell(maxrow + row, col).value = sheet1.cell(row, col).value
+            sheet2.cell(max_row + row_number.index(row)+1, col).value = sheet1.cell(row, col).value
 
 
 # 表格的打开、写入、关闭
@@ -48,15 +45,19 @@ def deal_execl(file_name, sheet_name, func_number):
     ws = wb[sheet_name]
     if os.path.exists(file_hz):
         wb_hz = openpyxl.load_workbook(file_hz)
+        ws_hz = wb_hz.active
+        row_max_number = ws_hz.max_row
     else:
         wb_hz = openpyxl.Workbook()
-    ws_hz = wb_hz.active
+        ws_hz = wb_hz.active
+        row_max_number = ws_hz.max_row - 1
+
     if func_number == 1:
-        copy_all(ws, ws_hz)
+        copy_all(ws, ws_hz, row_max_number)
     elif func_number == 2:
-        copy_col(ws, ws_hz, Col_number)
+        copy_col(ws, ws_hz, Col_number, row_max_number)
     elif func_number == 3:
-        copy_row(ws, ws_hz, Row_number)
+        copy_row(ws, ws_hz, Row_number, row_max_number)
     wb_hz.save(file_hz)
     wb_hz.close()
     wb.close()
