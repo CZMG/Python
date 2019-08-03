@@ -34,12 +34,13 @@ def create_summary_file(name, path, content):
 
 
 # match ip
-def match_ip(file):
-    pp = re.compile(match_ip_and_mask())
-    f = open(file, 'r')
+def match_ip(file, zz):
+    pp = re.compile(zz)
+    f = open(file, 'r', encoding='utf-8')
+    # f = open(file, 'r')
     con = f.readlines()
     f.close()
-    match = set(pp.search(i).group() for i in con if pp.search(i))
+    match = [pp.search(i).group() for i in con if pp.search(i)]
     return match
 
 
@@ -51,7 +52,7 @@ if __name__ == '__main__':
         file_name = file_path(dir_name)
         for files in file_name:
             print("开始处理%s。" % os.path.join(dir_name, files))
-            create_summary_file(summary_name, dir_name, match_ip(files))
+            create_summary_file(summary_name, dir_name, match_ip(files, match_ip_and_mask()))
             print("%s处理结束。" % os.path.join(dir_name, files))
     print("All messions are completed.")
     os.system('pause')

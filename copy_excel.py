@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 '''
-程序用于excel表格的复制汇总，可以选择是workbook中某张sheet全部复制，也可以是sheet中某个列的复制。
+程序用于excel表格的复制汇总，可以选择是workbook中某张sheet全部复制，也可以是sheet中某些列/行的复制。
 author:WYF
 DATE:2019/7/29
 '''
@@ -91,14 +91,14 @@ if choice == 1:
     run(Name_list)
 elif choice == 2:
     print("您选择的是：列复制。")
-    print("请输入列号,如：ABC")
+    print("请出入列号,如：ABC")
     col_alp = input('')
     Col_number = list(map(lambda x: openpyxl.utils.column_index_from_string(x), col_alp))
     Col_number.sort()
     run(Name_list)
 elif choice == 3:
     print("您选择的是：行复制。")
-    print("请输入行号,如：123")
+    print("请出入行号,如：123")
     row_str = input('')
     Row_number = list(map(lambda x: int(x), row_str))
     Row_number.sort()
