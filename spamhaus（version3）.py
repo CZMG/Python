@@ -6,7 +6,7 @@ WYF
 此工具用于爬取spamhaus网页的指定数据，保存为xls格式的工作簿。
 """
 
-import re_list
+import re
 import requests
 import bs4
 import os
@@ -14,7 +14,7 @@ import xlwt
 
 url = 'https://www.spamhaus.org/sbl/listings/chinanet-js'
 
-ip = re_list.compile(r'((2(5[0-5]|[0-4]\d))|[0-1]?\d{1,2})(\.((2(5[0-5]|[0-4]\d))|[0-1]?\d{1,2})){3}\/\d{2}')
+ip = re.compile(r'((2(5[0-5]|[0-4]\d))|[0-1]?\d{1,2})(\.((2(5[0-5]|[0-4]\d))|[0-1]?\d{1,2})){3}\/\d{2}')
 
 content_SBL = []
 content_time = []

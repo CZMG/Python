@@ -43,7 +43,7 @@ def judge(s_content, sheet):
     result = []
     for i in range(1, sheet.max_row + 1):
         d_row_content = [sheet.cell(i, j).value for j in range(1, sheet.max_column + 1)]
-        result += [s_content.index(k) for k in s_content if k in d_row_content]
+        result += [s_content.index(k) + 1 for k in s_content if k in d_row_content]
     return set(result)
 
 
