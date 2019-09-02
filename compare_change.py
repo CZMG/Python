@@ -8,6 +8,7 @@ Created on Tue Jul 23 21:26:46 2019
 
 import os
 import openpyxl
+from  Decorator_list import running_time
 
 
 def pd(sheet_name, workbook):
@@ -19,6 +20,7 @@ def pd(sheet_name, workbook):
 
 
 # deal with files
+@running_time
 def deal_files(file1, file2, sheet1, sheet2, col):
     wb1 = openpyxl.load_workbook(file1)
     ws1 = pd(sheet1, wb1)

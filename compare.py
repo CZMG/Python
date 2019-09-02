@@ -8,7 +8,9 @@ Created on Tue Jul 23 21:26:46 2019
 
 import openpyxl
 import os
+import time
 
+start_time = time.time()
 # load file
 print("此程序用于对比excel文件A和B。判断A中指定列的值是否在B中，若在，则将存在的行标红，并且在A中新建两个表格，分别为保存存在的数据和不存在的数据。")
 name_s = input("原文件：")
@@ -71,3 +73,6 @@ wb_s.save(file_s)
 wb_s.close()
 wb_d.save(file_d)
 wb_d.close()
+
+end_time = time.time()
+print(end_time-start_time)
