@@ -24,14 +24,7 @@ def deal_file(file):
 
 
 def sort_ip(list):
-    ip_4 = [int(ip.split('.')[-1]) for ip in list]
-    ip_4.sort()
-    ip_new_list = []
-    for i in list:
-        ip = i.split('.')
-        for j in ip_4:
-            ip_new = (ip[0], ip[1], ip[2], str(ip_4[j]))
-            ip_new_list.append('.'.join(ip_new))
+    ip_new_list = sorted(list,key = lambda x: ( int(x.split('.')[0]), int(x.split('.')[1]), int(x.split('.')[2]) ))
     return ip_new_list
 
 
