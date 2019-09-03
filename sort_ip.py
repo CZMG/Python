@@ -24,7 +24,7 @@ def deal_file(file):
 
 
 def sort_ip(list):
-    ip_new_list = sorted(list,key = lambda x: ( int(x.split('.')[0]), int(x.split('.')[1]), int(x.split('.')[2]) ))
+    ip_new_list = sorted(list,key = lambda x: ( int(x.split('.')[0]), int(x.split('.')[1]), int(x.split('.')[2]), int(x.split('.')[3])))
     return ip_new_list
 
 
